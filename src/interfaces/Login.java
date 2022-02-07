@@ -1,6 +1,9 @@
 package interfaces;
 
 import javax.swing.*;
+
+import clases.*;
+
 import java.awt.event.*;
 import java.awt.*;
 
@@ -11,7 +14,8 @@ public class Login extends JFrame implements ActionListener{
 	private JLabel lblusuario,lblcontrasena,lblbienvenido;
 	private JButton botoningresar;
 	String textoU="",textoC="";
-	
+	Codestudiante est=new Codestudiante();
+	Codtxtest txt=new Codtxtest();
 	public Login() {
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -65,16 +69,24 @@ public class Login extends JFrame implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		txt.ActualizarArraList(est.getFicheroEstudiante(), est.getUsuarios());
 		if(e.getSource() == botoningresar) {
 			textoU = jtusuario.getText().trim();
 			textoC = jpcontrasena.getText().trim();
-			
-			if(textoU.equals("") || textoC.equals("")){
-		    	JOptionPane.showMessageDialog(null, "Debes ingresar tu Usuario y Contraseña.");
-		    }else {
-		    	
-		    }
+			int nocoincidencias=0;
+			for(Codestudiante n:est.getUsuarios()){
+				if(textoU.equals(n.getUsuario()) && textoC.equals(n.getPassword())){
+				     JOptionPane.showMessageDialog(null, "Bienvenido "+n.getNombre());
+				     Estudiante estudiante=new Estudiante(nocoincidencias);
+				     estudiante.ventana();
+				     setVisible(false); 
+		        }else {
+					nocoincidencias++;
+		        }
+			}
+			if(nocoincidencias==est.getUsuarios().size()) {
+				JOptionPane.showMessageDialog(null, "Ingrese su usuario y contraseña correctamente");
+			}
 		}
 	}
 	
