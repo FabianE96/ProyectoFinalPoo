@@ -1,6 +1,7 @@
 package main;
 
 
+import interfaces.Estudiante;
 import interfaces.Login;
 
 
@@ -11,9 +12,6 @@ public class Principal {
 		
 		Login login = new Login();
 		login.ventana();
-		
-		
-		
 		
 	}
 

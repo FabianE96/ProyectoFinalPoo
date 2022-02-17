@@ -61,7 +61,7 @@ public class Codtxtest {
 	         BufferedReader leerFichero = new BufferedReader (new FileReader(FicheroEstudiante));    
 	         while( (linea = leerFichero.readLine()) != null)
 	         {
-	            StringTokenizer mistokens = new StringTokenizer(linea, ";");
+	            StringTokenizer mistokens = new StringTokenizer(linea, "|");
 	            String  usuario =  mistokens.nextToken().trim();
 	            String  password =  mistokens.nextToken().trim();
 	            String  id =  mistokens.nextToken().trim();
